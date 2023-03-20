@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+
+    <!-- 일반적으로 persistence-unit 은 데이터베이스 당 하나를 생성 -->
+    <persistence-unit name="hello">
+        <properties>
+            <!-- 필수 속성 -->
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>                  <!-- 데이터베이스 드라이버 -->
+            <property name="javax.persistence.jdbc.user" value="sa"/>                               <!-- 데이터베이스 USERNAME -->
+            <property name="javax.persistence.jdbc.password" value=""/>                             <!-- 데이터베이스 PASSWORD -->
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:tcp://localhost/~/test"/>    <!-- 데이터베이스 접근 URL -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>            <!-- 사용하는 데이터베이스를 명시함으로서 동일한 기능을 제공하도록 방언 지원 -->
+
+            <!-- 옵션 -->
+            <property name="hibernate.show_sql" value="true"/>                                      <!-- 데이터베이스에 적용되는 쿼리 출력 여부 -->
+            <property name="hibernate.format_sql" value="true"/>                                    <!--  -->
+            <property name="hibernate.use_sql_comments" value="true"/>                              <!--  -->
+            <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
+        </properties>
+    </persistence-unit>
+</persistence>

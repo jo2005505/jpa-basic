@@ -4,6 +4,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.util.Arrays;
+import java.util.List;
 
 public class JpaMain {
     public static void main(String[] args) {
@@ -39,8 +41,66 @@ public class JpaMain {
             Member findMember = em.find(Member.class, 1L);
             findMember.setName("HelloJPA");
             */
-            
+
+            /* JPQL 작성, Member 객체를 대상으로 조회하는 Query을 작성 */
+            /*
+            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+                    .setFirstResult(0)
+                    .setMaxResults(2)
+                    .getResultList();
+
+            result.stream().forEach(n -> {
+                    System.out.println("id : " + n.getId() + "\nname : " + n.getName());
+                }
+            );
+            */
+
+            /* 변경 감지 */
+            /*
+            Member member = em.find(Member.class, 1L);
+            member.setName("그만해~ 그러다 다 죽어~~!!");
+
+
+            Member memberA = new Member();
+            memberA.setId(2L);
+            memberA.setName("김A");
+
+            Member memberB = new Member();
+            memberB.setId(3L);
+            memberB.setName("김B");
+
+            Member memberC = new Member();
+            memberC.setId(4L);
+            memberC.setName("김C");
+
+            em.persist(memberA);
+            em.persist(memberB);
+            em.persist(memberC);
+
+            //em.flush();  // 영속성에서 변경분을 반영
+
+            List<Member> result = em.createQuery("select m from Member m" ,Member.class).getResultList();
+
+            result.stream().forEach(n -> {
+                        System.out.println("id : " + n.getId() + "\nname : " + n.getName());
+                    }
+            );
+            */
+
+            Member member = em.find(Member.class, 1L);
+
+            System.out.println("memberId : " + member.getId());
+            System.out.println("memberName : " + member.getName());
+
+            member.setName("그만할까?");
+
+            em.detach(member);  // 영속성 컨텍스트에서 제외되기 때문에 변경분이 저장되지 않는다.
+
             tx.commit();        // commit시 Entity의 수정내용이 있으면 데이터베이스에 반영하여 Commit 진행
+
+            member = em.find(Member.class, 1L);
+            System.out.println("memberId : " + member.getId());
+            System.out.println("memberName : " + member.getName());
         } catch (Exception e) {
             tx.rollback();
         } finally {

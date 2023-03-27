@@ -3,32 +3,41 @@ package hellojpa;
 import jdk.nashorn.internal.objects.annotations.Getter;
 import jdk.nashorn.internal.objects.annotations.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
-@Table(name="MEMBER")
+
 public class Member {
     @Id
     private Long id;
 
+    @Column(name = "name", nullable = true)
     private String name;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    private Integer age;
 
-    public Long getId() {
-        return id;
-    }
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    /*
+     * @Temporal은 과거 버전용이며, 현재는 LocalDate와 LocalDateTome을 사용
+     */
+    /*
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
 
-    public String getName() {
-        return name;
-    }
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifiedDate;
+    */
+
+    private LocalDateTime createdDate;
+    private LocalDateTime lastModifiedDate;
+
+    @Lob
+    private String description;
+
+    public Member() {}
 }

@@ -87,6 +87,8 @@ public class JpaMain {
             );
             */
 
+            // 준영속성
+            /*
             Member member = em.find(Member.class, 1L);
 
             System.out.println("memberId : " + member.getId());
@@ -101,6 +103,9 @@ public class JpaMain {
             member = em.find(Member.class, 1L);
             System.out.println("memberId : " + member.getId());
             System.out.println("memberName : " + member.getName());
+            */
+
+            tx.commit();
         } catch (Exception e) {
             tx.rollback();
         } finally {

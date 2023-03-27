@@ -17,7 +17,7 @@
             <property name="hibernate.show_sql" value="true"/>                                      <!-- 데이터베이스에 적용되는 쿼리 출력 여부 -->
             <property name="hibernate.format_sql" value="true"/>                                    <!--  -->
             <property name="hibernate.use_sql_comments" value="true"/>                              <!--  -->
-            <!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
+            <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
 </persistence>

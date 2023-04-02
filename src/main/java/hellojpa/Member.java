@@ -9,17 +9,17 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
-@TableGenerator(
+@SequenceGenerator(
         name = "MEMBER_SEQ_GENERATOR"
-        , table = "MY_SEQUENCES"            // Table Name
-        , pkColumnValue = "MEMBER_SEQ"      // PK Column Name
-        , allocationSize = 1
+        , sequenceName = "MEMBER_SEQ"
+        , initialValue = 1
+        , allocationSize = 50
 )
 public class Member {
 
     @Id
     @GeneratedValue(
-            strategy = GenerationType.TABLE
+            strategy = GenerationType.SEQUENCE
             , generator = "MEMBER_SEQ_GENERATOR"
     )
     private Long id;

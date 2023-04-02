@@ -105,10 +105,17 @@ public class JpaMain {
             System.out.println("memberName : " + member.getName());
             */
 
-            Member member = new Member();
-            member.setUsername("C");
+            Member memberA = new Member();
+            Member memberB = new Member();
+            Member memberC = new Member();
 
-            em.persist(member);
+            memberA.setUsername("김A");
+            memberB.setUsername("김B");
+            memberC.setUsername("김C");
+
+            em.persist(memberA);
+            em.persist(memberB);
+            em.persist(memberC);
 
             tx.commit();
         } catch (Exception e) {

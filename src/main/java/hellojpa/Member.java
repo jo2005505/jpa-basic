@@ -19,8 +19,14 @@ public class Member {
     @Column(name = "USERNAME")
     private String username;
 
+    /* DB 중심 매핑 모델시
     @Column(name = "TEAM_ID")
     private Long teamId;
+    */
+
+    @ManyToOne   // Member가 N이며, Team이 1 인 관계
+    @JoinColumn(name = "TEAM_ID")  // TEAM_ID 컬럼을 키로 맵핑
+    private Team team;
 
     public Long getId() {
         return id;
@@ -38,12 +44,12 @@ public class Member {
         this.username = username;
     }
 
-    public Long getTeamId() {
-        return teamId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamId(Long teamId) {
-        this.teamId = teamId;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
 

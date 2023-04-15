@@ -6,7 +6,9 @@ import jdk.nashorn.internal.objects.annotations.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -15,18 +17,13 @@ public class Member {
     @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;
+    private String name;
+    private String city;
+    private String street;
+    private String zipcode;
 
-    @Column(name = "USERNAME")
-    private String username;
-
-    /* DB 중심 매핑 모델시
-    @Column(name = "TEAM_ID")
-    private Long teamId;
-    */
-
-    @ManyToOne   // Member가 N이며, Team이 1 인 관계
-    @JoinColumn(name = "TEAM_ID")  // TEAM_ID 컬럼을 키로 맵핑
-    private Team team;
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -36,20 +33,44 @@ public class Member {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Team getTeam() {
-        return team;
+    public String getCity() {
+        return city;
     }
 
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }
 
